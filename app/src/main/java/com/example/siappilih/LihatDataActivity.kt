@@ -34,9 +34,9 @@ class LihatDataActivity : AppCompatActivity() {
         }
     }
     private fun getAllPemilih(keyword : String = "") {
-        pemilihDao.allPemilih.observe(this) { pemilihs ->
+        pemilihDao.getAll.observe(this) { pemilihs ->
             val adapterPemilih = PemilihAdapter(pemilihs) { pemilih ->
-                val intentToEditActivity = Intent(this@LihatDataActivity, InformasiActivity::class.java)
+                val intentToEditActivity = Intent(this@LihatDataActivity, LihatDataPemilihActivity::class.java)
                 intentToEditActivity.putExtra("id", pemilih.id)
 
                 startActivity(intentToEditActivity)

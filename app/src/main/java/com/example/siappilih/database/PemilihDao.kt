@@ -20,11 +20,11 @@ interface PemilihDao {
     fun delete(pemilih: Pemilih)
 
     @get:Query("SELECT * from pemilih ORDER BY id ASC")
-    val allPemilih : LiveData<List<Pemilih>>
+    val getAll: LiveData<List<Pemilih>>
 
-    @Query("SELECT * FROM pemilih WHERE id = :pemilihId")
-    fun getPemilihById(pemilihId: Int): LiveData<Pemilih>
+    @Query("SELECT * FROM pemilih WHERE id = :id LIMIT 1")
+    fun getOneById(id: Int): LiveData<Pemilih>
 
-    @Query("DELETE FROM pemilih WHERE id = :pemilihId")
-    fun deleteById(pemilihId: Int)
+    @Query("DELETE FROM pemilih WHERE id = :id")
+    fun deleteById(id: Int)
 }
