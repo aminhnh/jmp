@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="mainText" parent="TextAppearance.AppCompat">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+    <style name="mainText.unaligned">
+        <item name="android:textAlignment">textStart</item>
+    </style>
+    <style name="headingText">
+        <item name="android:textColor">@color/text</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontWeight">800</item>
+        <item name="android:textFontWeight">800</item>
+    </style>
+</resources>
