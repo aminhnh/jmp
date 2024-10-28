@@ -1,195 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".LihatDataActivity">
+    tools:context=".LihatDataActivity"
+    android:background="@color/bg_grey">
 
-    <TextView
-        android:id="@+id/login"
-        style="@style/headingText"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_pemilih"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/roboto"
-        android:gravity="center"
-        android:text="Data Pemilih" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingTop="15dp"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false"
+        />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingTop="60dp">
-
-        <TextView
-            android:id="@+id/username"
-            style="@style/mainText"
-            android:textAlignment="textStart"
-            android:paddingStart="20dp"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="NIK"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/colon"
-            style="@style/mainText"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:text=":"
-            app:layout_constraintStart_toEndOf="@+id/username"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/input_username"
-            style="@style/mainText.unaligned"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="NIK"
-            android:inputType="text"
-            app:layout_constraintBottom_toBottomOf="@+id/colon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/colon"
-            app:layout_constraintTop_toTopOf="@+id/colon" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingTop="20dp">
-
-        <TextView
-            android:id="@+id/username1"
-            style="@style/mainText"
-            android:textAlignment="textStart"
-            android:paddingStart="20dp"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="Nama"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/colon1"
-            style="@style/mainText"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:text=":"
-            app:layout_constraintStart_toEndOf="@+id/username1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/input_username1"
-            style="@style/mainText.unaligned"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Nama"
-            android:inputType="text"
-            app:layout_constraintBottom_toBottomOf="@+id/colon1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/colon1"
-            app:layout_constraintTop_toTopOf="@+id/colon1" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="15dp">
-
-        <TextView
-            android:id="@+id/genderLabel"
-            style="@style/mainText"
-            android:textAlignment="textStart"
-            android:paddingStart="20dp"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="Jenis Kelamin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/colon2"
-            style="@style/mainText"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:text=":"
-            app:layout_constraintBottom_toBottomOf="@+id/genderLabel"
-            app:layout_constraintStart_toEndOf="@+id/genderLabel"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- RadioGroup for Gender Selection -->
-        <RadioGroup
-            android:id="@+id/genderGroup"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/colon2"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <RadioButton
-                android:id="@+id/radioMale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Laki-Laki" />
-
-            <RadioButton
-                android:id="@+id/radioFemale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Perempuan" />
-
-        </RadioGroup>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:paddingTop="20dp">
-
-        <!-- Label for Tanggal -->
-        <TextView
-            android:id="@+id/tanggalLabel"
-            style="@style/mainText"
-            android:textAlignment="textStart"
-            android:paddingStart="20dp"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="Tanggal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/colon3"
-            style="@style/mainText"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:text=":"
-            app:layout_constraintStart_toEndOf="@+id/tanggalLabel"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- EditText for Date (Tanggal) -->
-        <EditText
-            android:id="@+id/input_tanggal"
-            style="@style/mainText.unaligned"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Tanggal"
-            android:focusable="false"
-            android:clickable="true"
-            app:layout_constraintBottom_toBottomOf="@+id/colon3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/colon3"
-            app:layout_constraintTop_toTopOf="@+id/colon3" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

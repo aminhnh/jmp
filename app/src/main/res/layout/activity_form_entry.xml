@@ -13,7 +13,7 @@
         style="@style/headingText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/roboto_bold"
         android:gravity="center"
         android:text="Form Entry" />
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/input_username"
+            android:id="@+id/input_nik"
             style="@style/mainText.unaligned"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/input_username1"
+            android:id="@+id/input_nama"
             style="@style/mainText.unaligned"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -97,6 +97,45 @@
             app:layout_constraintTop_toTopOf="@+id/colon1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/label_no_hp"
+            style="@style/mainText"
+            android:textAlignment="textStart"
+            android:paddingStart="20dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="No.HP"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/colon6"
+            style="@style/mainText"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:text=":"
+            app:layout_constraintStart_toEndOf="@+id/label_no_hp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/input_no_hp"
+            style="@style/mainText.unaligned"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Nomor Hanndphone"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="@+id/colon6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/colon6"
+            app:layout_constraintTop_toTopOf="@+id/colon6" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -150,7 +189,6 @@
         </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -194,18 +232,57 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/label_alamat"
+            style="@style/mainText"
+            android:textAlignment="textStart"
+            android:paddingStart="20dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Alamat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/colon7"
+            style="@style/mainText"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:text=":"
+            app:layout_constraintStart_toEndOf="@+id/label_alamat"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/input_alamat"
+            style="@style/mainText.unaligned"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Alamat"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="@+id/colon7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/colon7"
+            app:layout_constraintTop_toTopOf="@+id/colon7" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp">
 
         <!-- Label for Pilih Lokasi -->
         <TextView
-            android:id="@+id/locationLabel"
+            android:id="@+id/label_lokasi"
             style="@style/mainText"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:paddingStart="20dp"
-            android:text="Alamat"
+            android:text="Lokasi"
             android:textAlignment="textStart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -218,7 +295,7 @@
             android:layout_height="wrap_content"
             android:text=":"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/locationLabel"
+            app:layout_constraintStart_toEndOf="@+id/label_lokasi"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Button for Selecting Location -->
@@ -232,12 +309,57 @@
             app:layout_constraintTop_toTopOf="parent"
             android:backgroundTint="@color/text"
             android:textColor="@color/white"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp">
+
+        <!-- Label for Pilih Foto -->
+        <TextView
+            android:id="@+id/foto_label"
+            style="@style/mainText"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:text="Foto proses pendaftaran"
+            android:textAlignment="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/colon5"
+            style="@style/mainText"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:text=":"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/foto_label"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Button for Selecting Foto -->
+        <Button
+            android:id="@+id/btn_pilih_foto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Pilih Foto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/colon5"
+            app:layout_constraintTop_toTopOf="parent"
+            android:backgroundTint="@color/text"
+            android:textColor="@color/white"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_save_pemilih"
         android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
