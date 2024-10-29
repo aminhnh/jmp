@@ -2,21 +2,18 @@ package com.example.siappilih
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import com.example.siappilih.database.Pemilih
-import com.example.siappilih.database.PemilihDao
 import com.example.siappilih.database.PemilihDatabase
 import com.example.siappilih.database.PemilihRepository
 import com.example.siappilih.database.PemilihViewModel
 import com.example.siappilih.database.ViewModelFactory
-import com.example.siappilih.databinding.ActivityLihatDataBinding
 import com.example.siappilih.databinding.ActivityLihatDataPemilihBinding
-import com.example.siappilih.util.AppExecutorService
-import java.util.concurrent.ExecutorService
 
 class LihatDataPemilihActivity : AppCompatActivity() {
     private val binding by lazy {
@@ -45,8 +42,20 @@ class LihatDataPemilihActivity : AppCompatActivity() {
     }
     private fun populatePemilih(pemilih: Pemilih) {
         with(binding) {
-            // TODO add the rest of the data
+            txtNik.text = pemilih.nik
+            txtNama.text = pemilih.namaLengkap
             txtNoHp.text = pemilih.nomorHandphone
+            if (pemilih.isMale) {
+                txtJenisKelamin.text = "Laki-laki"
+            } else {
+                txtJenisKelamin.text = "Perempuan"
+            }
+            txtTanggal.text = pemilih.tanggalPendataan
+            txtAlamat.text = pemilih.alamat
+
+            pemilih.foto?.let {
+                imagePreview.setImageURI(Uri.parse(it))
+            }
         }
     }
     private fun showConfirmationDialog(onConfirm: () -> Unit) {

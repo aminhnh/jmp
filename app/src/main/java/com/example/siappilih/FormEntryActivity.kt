@@ -7,26 +7,46 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
-import androidx.room.ColumnInfo
 import com.example.siappilih.database.Pemilih
-import com.example.siappilih.database.PemilihDao
 import com.example.siappilih.database.PemilihDatabase
 import com.example.siappilih.database.PemilihRepository
 import com.example.siappilih.database.PemilihViewModel
 import com.example.siappilih.database.ViewModelFactory
 import com.example.siappilih.databinding.ActivityFormEntryBinding
-import com.example.siappilih.databinding.ActivityMainBinding
-import com.example.siappilih.util.AppExecutorService
-import com.example.siappilih.util.JenisKelamin
+import java.io.File
+import java.io.FileOutputStream
 import java.util.Calendar
-import java.util.concurrent.ExecutorService
+import android.Manifest
+import androidx.core.content.FileProvider
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
 
 class FormEntryActivity : AppCompatActivity() {
+    private val TAG = "FormEntryActivity"
     private val binding by lazy {
         ActivityFormEntryBinding.inflate(layoutInflater)
     }
     private lateinit var pemilihViewModel: PemilihViewModel
+
+    private var imagePath: String? = null
+
+    private val requestCameraPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) captureImage()
+    }
+
+    private val selectImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let { handleImageResult(it) }
+    }
+
+    private val takePictureLauncher = registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+        if (success) {
+            imagePath?.let { binding.imagePreview.setImageURI(Uri.parse(it)) }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +63,13 @@ class FormEntryActivity : AppCompatActivity() {
             btnSelectLocation.setOnClickListener {
                 openMapForLocationSelection()
             }
+            btnSelectPhoto.setOnClickListener {
+                showImagePickerDialog()
+            }
             btnSavePemilih.setOnClickListener {
-                savePelimih();
+                if (validateData()) {
+                    savePelimih();
+                }
             }
         }
     }
@@ -86,7 +111,7 @@ class FormEntryActivity : AppCompatActivity() {
                 alamat = inputAlamat.text.toString(),
                 latitude = 1.0,
                 longitude = 1.0,
-                foto = "",
+                foto = imagePath?: "",
             )
             insertPemilih(newPemilih)
         }
@@ -119,4 +144,48 @@ class FormEntryActivity : AppCompatActivity() {
         startActivity(intentToMainActivity)
         finish()
     }
+
+
+
+    private fun showImagePickerDialog() {
+        val options = arrayOf("Select from Gallery", "Capture Photo")
+        val builder = android.app.AlertDialog.Builder(this)
+        builder.setTitle("Choose an option")
+        builder.setItems(options) { _, which ->
+            when (which) {
+                0 -> selectImageFromGallery()
+                1 -> requestCameraPermission.launch(Manifest.permission.CAMERA)
+            }
+        }
+        builder.show()
+    }
+
+    private fun selectImageFromGallery() {
+        selectImageLauncher.launch("image/*")
+    }
+
+    private fun captureImage() {
+        val photoFile = createImageFile()
+        val photoURI = FileProvider.getUriForFile(this, "${packageName}.provider", photoFile)
+        imagePath = photoFile.absolutePath
+        takePictureLauncher.launch(photoURI)
+    }
+
+    private fun createImageFile(): File {
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val storageDir: File = cacheDir // Use cacheDir or getExternalFilesDir for temporary storage
+        return File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDir)
+    }
+
+    private fun handleImageResult(uri: Uri) {
+        val imageFile = createImageFile()
+        contentResolver.openInputStream(uri)?.use { inputStream ->
+            FileOutputStream(imageFile).use { outputStream ->
+                inputStream.copyTo(outputStream)
+            }
+        }
+        imagePath = imageFile.absolutePath
+        binding.imagePreview.setImageURI(uri)
+    }
+
 }
